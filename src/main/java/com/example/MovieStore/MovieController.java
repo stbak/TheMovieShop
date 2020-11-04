@@ -15,6 +15,8 @@ public class MovieController {
 
     @Autowired
     private MovieRepository repository;
+    @Autowired
+    private MemberRepository repositoryMember;
 
     @GetMapping("/")
     public String movies(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
@@ -38,5 +40,13 @@ public class MovieController {
             result[i] = i+1;
         }
         return result;
+    }
+
+    @GetMapping("/members")
+    public String member(Model model) {
+
+        List<Member> memberList = repositoryMember.memberList();
+        model.addAttribute("members", memberList);
+        return "members";
     }
 }
