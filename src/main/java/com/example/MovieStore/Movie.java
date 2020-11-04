@@ -1,13 +1,13 @@
-package com.example.BookStore;
+package com.example.MovieStore;
 
-public class Book {
+public class Movie {
     private Integer id;
     private String title;
     private String author;
     private Double price;
     private String date;
 
-    public Book(Integer id, String title, String author, Double price, String date) {
+    public Movie(Integer id, String title, String author, Double price, String date) {
         this.id = id;
         this.title = title;
         this.author = author;

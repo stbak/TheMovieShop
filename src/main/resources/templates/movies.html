@@ -2,20 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Books</title>
+    <title>Movies</title>
 </head>
 <body>
-<h1>Books</h1>
+<h1>Movies</h1>
 <table>
     <tr>
         <th>Title</th>
         <th>Author</th>
         <th>Price</th>
     </tr>
-    <tr th:each="book : ${books}">
-        <th th:text="${book.title}"></th>
-        <th th:text="${book.author}"></th>
-        <th th:text="${book.price}"></th>
+    <tr th:each="movie : ${movies}">
+        <th th:text="${movie.title}"></th>
+        <th th:text="${movie.author}"></th>
+        <th th:text="${movie.price}"></th>
     </tr>
 </table>
 <div>
