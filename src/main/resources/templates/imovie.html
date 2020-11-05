@@ -38,7 +38,7 @@
                 <span class="page-item active" aria-current="page">
                     <span class="page-link" th:if="${currentPage == page}" th:text="${page}"></span>
                 </span>
-                <a class="page-link" th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
+                <a class="page-link" th:if="${page >= firstPage && page <= lastPage && page != currentPage}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
             </li>
             <li class="page-item" th:if="${showNext}">
                 <a class="page-link" th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
