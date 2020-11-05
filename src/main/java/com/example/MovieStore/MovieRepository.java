@@ -2,19 +2,65 @@ package com.example.MovieStore;
 
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* API key (v3 auth):
+* bbce7dd3d129803095fc7a69228da829
+*
+* Sample API request:
+* https://api.themoviedb.org/3/movie/550?api_key=bbce7dd3d129803095fc7a69228da829
+*
+* Read access token for API (v4 auth):
+* eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYmNlN2RkM2QxMjk4MDMwOTVmYzdhNjkyMjhkYTgyOSIsInN1YiI6IjVmYTM2ZmM0MzIzZWJhMDA0MTIwNDhkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0y9FpcwWsY1mumx2oUvWRofDq_DsQCfcdbZPzgAJ5og
+*/
 @Service
 public class MovieRepository {
     private List<Movie> movies;
+    private List<String> raw;
+    private BufferedReader bufferedReader = new BufferedReader(new FileReader("movieDB.txt")); //change to data1.txt if you want to get data out of data1 into movieDB
 
-    public MovieRepository() {
+    public MovieRepository() throws IOException {
         movies = new ArrayList<>();
+        raw = new ArrayList<>();
 
         for (int i = 1; i <= 95; i++) {
-            movies.add(new Movie(200+i, "Movie Title " + i, "Author name " + i, 40 + i + 1.99, "Dec 31, " + (1910+i)));
+            //movies.add(new Movie(200+i, "Movie Title " + i, "Author name " + i, 40 + i + 1.99, "Dec 31, " + (1910+i)));
         }
+
+        String line = bufferedReader.readLine();
+        int count = 0;
+        while (line != null) {
+            raw.add(line);
+            line = bufferedReader.readLine();
+            count++;
+        }
+
+        String[] movieDetail = new String[9]; //9 is the no parts string will be splitted into
+
+        //Outcommented write code below is used for getting data out of data1.txt to movieDB.txt
+        //File fout = new File("movieDB.txt");
+        //FileOutputStream fos = new FileOutputStream(fout);
+        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fos));
+        for (String s: raw
+             ) {
+            System.out.println(s);
+            /*if (s.contains("movie")) {
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
+            }*/
+            //now split by tab
+
+            movieDetail = s.split("\t");
+            movies.add(new Movie(movieDetail[0], movieDetail[2], movieDetail[5], movieDetail[7], movieDetail[8]));
+
+
+
+        }
+        //bufferedWriter.close();
+
     }
 
     public List<Movie> getPage(int page, int pageSize) {
@@ -36,4 +82,8 @@ public class MovieRepository {
         }
         return null;
     }
+
+
+
+
 }
