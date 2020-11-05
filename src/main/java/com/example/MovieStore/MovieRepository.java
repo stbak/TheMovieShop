@@ -46,15 +46,37 @@ public class MovieRepository {
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fos));
         for (String s: raw
              ) {
-            
+
             /*if (s.contains("movie")) {
                 bufferedWriter.write(s);
                 bufferedWriter.newLine();
             }*/
             //now split by tab
+            Double moviePrice;
+            int year;
 
             movieDetail = s.split("\t");
-            movies.add(new Movie(movieDetail[0], movieDetail[2], movieDetail[5], movieDetail[7], movieDetail[8]));
+            try {
+                year = Integer.parseInt(movieDetail[5]);
+            } catch (Exception e) {
+                year = 1800;
+            }
+            if(year < 1950) {
+                moviePrice = 25.00;
+            } else if (year > 1950 && year < 1975) {
+                moviePrice = 40.00;
+            } else if (year > 1975 && year < 2000) {
+                moviePrice = 55.00;
+            } else if (year > 2000 && year < 2015) {
+                moviePrice = 150.00;
+            } else if (year > 2015 && year < 2020) {
+                moviePrice = 180.00;
+            } else if (year >= 2020) {
+                moviePrice = 340.00;
+            } else {
+                moviePrice = 1.00;
+            }
+            movies.add(new Movie(movieDetail[0], movieDetail[2], movieDetail[5], movieDetail[7], movieDetail[8], moviePrice));
 
 
 

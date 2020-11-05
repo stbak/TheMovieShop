@@ -26,12 +26,13 @@ public class Movie {
 
 
 
-    public Movie(String s, String s1, String s2, String s3, String s4) {
-        this.tId = s;
-        this.title = s1;
-        this.date = s2;
-        this.movieLength = s3;
-        this.genres = s4;
+    public Movie(String id, String title, String year, String minutes, String genre, Double price) {
+        this.tId = id;
+        this.title = title;
+        this.date = year;
+        this.movieLength = minutes;
+        this.genres = genre;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -68,5 +69,45 @@ public class Movie {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String gettId() {
+        return tId;
+    }
+
+    public void settId(String tId) {
+        this.tId = tId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
+
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
+    public String getMovieLength() {
+        return movieLength;
+    }
+
+    public void setMovieLength(String movieLength) {
+        this.movieLength = movieLength;
     }
 }
