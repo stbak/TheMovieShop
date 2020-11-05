@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Movies</title>
+    <title>The Movie Planet Shop</title>
+
 </head>
 <body>
 <h1>Movies</h1>
@@ -22,18 +23,17 @@
         <th th:text="${movie.price}"></th>
     </tr>
 </table>
-<div>
-        <span th:if="${showPrev}">
-            <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
-        </span>
+<div><!-- first previous next last navigation -->
+    <span th:if="${currentPage > 1}"><a th:href="'/?page=1'" th:text="First "></a></span>
+    <span th:if="${showPrev}"><a th:href="'/?page=' + ${currentPage-1}" th:text="Previous "></a></span>
+    <span><a th:href="'/?page=' + ${currentPage+1}" th:text="Next "></a></span>
+    <span th:if="${currentPage <= totalNoPages}"><a th:href="'/?page=' + ${totalNoPages}" th:text="Last"></a></span>
 
-    <span th:each="page : ${pages}">
+</div>
+<div><!-- navigation -x <-> x+ -->
+    <span id="allPagesNav" th:each="page : ${pages}">
         <span th:if="${currentPage == page}" th:text="${page}"></span>
         <a th:if="${page >= firstPage && page <= lastPage && page != currentPage}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
-    </span>
-
-    <span th:if="${showNext}">
-        <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
     </span>
 </div>
 </body>
