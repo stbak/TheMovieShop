@@ -43,8 +43,10 @@ public class MovieController {
         }
         return result;
     }
-}
 
+<<<<<<< HEAD
+
+=======
     @GetMapping("/members")
     public String member(Model model) {
 
@@ -52,4 +54,5 @@ public class MovieController {
         model.addAttribute("members", memberList);
         return "members";
     }
+>>>>>>> 1a96881a481a2c494d0048c27cdbe518ce507c9c
 }
