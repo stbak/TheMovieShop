@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
-    int memberID;
-    String name;
-    String email;
-    String password;
-    List<String> favouriteList = new ArrayList<>();
+    private int memberID;
+    private String name;
+    private String email;
+    private String password;
+    private List<String> favouriteList = new ArrayList<>();
 
     public Member(int memberID, String password){
         this.memberID=memberID;
