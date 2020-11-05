@@ -16,6 +16,8 @@ public class MovieController {
     @Autowired
     private MovieRepository repository;
 
+
+
     @GetMapping("/")
     public String movies(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 
@@ -39,4 +41,6 @@ public class MovieController {
         }
         return result;
     }
+
+
 }
