@@ -8,13 +8,17 @@
 <h1>Movies</h1>
 <table>
     <tr>
+        <th>MovieID</th>
         <th>Title</th>
-        <th>Author</th>
+        <th>Created year</th>
+        <th>Genre</th>
         <th>Price</th>
     </tr>
     <tr th:each="movie : ${movies}">
-        <th th:text="${movie.title}"></th>
-        <th th:text="${movie.author}"></th>
+        <th style="float:left;" th:text="${movie.tId}"></th>
+        <th><a th:href="'https://www.imdb.com/title/' + ${movie.tId}" target="_top" th:text="${movie.title}"></a></th>
+        <th th:text="${movie.date}"></th>
+        <th th:text="${movie.genres}"></th>
         <th th:text="${movie.price}"></th>
     </tr>
 </table>
@@ -24,9 +28,9 @@
         </span>
 
     <span th:each="page : ${pages}">
-            <span th:if="${currentPage == page}" th:text="${page}"></span>
-            <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
-        </span>
+        <span th:if="${currentPage == page}" th:text="${page}"></span>
+        <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
+    </span>
 
     <span th:if="${showNext}">
             <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>

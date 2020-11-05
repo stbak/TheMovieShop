@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class MovieController {
 
-    private static final int PAGE_SIZE = 10;
+    private static final int PAGE_SIZE = 25;
 
     @Autowired
     private MovieRepository repository;
