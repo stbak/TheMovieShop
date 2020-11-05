@@ -21,36 +21,20 @@ public class MovieRepository {
     private List<Movie> movies;
     private List<String> raw;
     private BufferedReader bufferedReader = new BufferedReader(new FileReader("movieDB.txt")); //change to data1.txt if you want to get data out of data1 into movieDB
+    private String[] movieDetail;
 
     public MovieRepository() throws IOException {
         movies = new ArrayList<>();
         raw = new ArrayList<>();
 
-        for (int i = 1; i <= 95; i++) {
-            //movies.add(new Movie(200+i, "Movie Title " + i, "Author name " + i, 40 + i + 1.99, "Dec 31, " + (1910+i)));
-        }
-
         String line = bufferedReader.readLine();
-        int count = 0;
         while (line != null) {
             raw.add(line);
             line = bufferedReader.readLine();
-            count++;
         }
 
-        String[] movieDetail = new String[9]; //9 is the no parts string will be splitted into
+        for (String s: raw) {
 
-        //Outcommented write code below is used for getting data out of data1.txt to movieDB.txt
-        //File fout = new File("movieDB.txt");
-        //FileOutputStream fos = new FileOutputStream(fout);
-        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fos));
-        for (String s: raw
-             ) {
-
-            /*if (s.contains("movie")) {
-                bufferedWriter.write(s);
-                bufferedWriter.newLine();
-            }*/
             //now split by tab
             Double moviePrice;
             int year;
@@ -77,18 +61,12 @@ public class MovieRepository {
                 moviePrice = 1.00;
             }
             movies.add(new Movie(movieDetail[0], movieDetail[2], movieDetail[5], movieDetail[7], movieDetail[8], moviePrice));
-
-
-
         }
-        //bufferedWriter.close();
-
     }
 
     public List<Movie> getPage(int page, int pageSize) {
         int from = Math.max(0,page*pageSize);
         int to = Math.min(movies.size(),(page+1)*pageSize);
-
         return movies.subList(from, to);
     }
 
@@ -104,7 +82,24 @@ public class MovieRepository {
         }
         return null;
     }
+    /*
+    public void getDataFromData1ToMovieDB() throws IOException {
 
+        File fout = new File("movieDB.txt");
+        FileOutputStream fos = new FileOutputStream(fout);
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fos));
+        for (String s: raw) {
+
+            if (s.contains("movie")) { //if you only wants movies in the movieDB file, otherwise add e.g. "short", "tvMovie" etc...look in Data1.txt for types
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
+            }
+
+        }
+        bufferedWriter.close();
+
+    }
+    */
 
 
 
