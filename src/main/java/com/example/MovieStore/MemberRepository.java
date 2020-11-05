@@ -7,7 +7,7 @@ import java.util.List;
 @Service
 public class MemberRepository {
 
-    private List<Member> members;
+    private static List<Member> members;
 
     public MemberRepository(){
         members = new ArrayList<>();
@@ -38,7 +38,7 @@ public class MemberRepository {
             members.add(member1);
     }
 
-    public boolean MemberLoginMatch(int memberID, String password){
+    public static boolean MemberLoginMatch(int memberID, String password){
         boolean loginMatch=false;
         for(Member member : members){
             if(member.getMemberID() == memberID){
