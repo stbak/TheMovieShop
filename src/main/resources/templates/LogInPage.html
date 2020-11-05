@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>LogIn</title>
+</head>
+<br>
+<h1>Log in page</h1>
+<h2><b th:text="${message}">default message</b></h2>
+<form action="/tryLogin" method="post">
+    <p>MemberID:</p>
+    <input type="text" name="memberID"/>
+    <p>Password</p>
+    <input type="text" name="password"/>
+    <input type="submit"/>
+</form>
+</body>
+</html>
