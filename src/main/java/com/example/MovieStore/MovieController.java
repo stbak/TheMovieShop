@@ -19,11 +19,10 @@ public class MovieController {
     private MemberRepository repositoryMember;
 
 
-
     @GetMapping("/")
-    public String movies(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+    public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
-        List<Movie> movies = repository.getPage(page-1, PAGE_SIZE);
+        List<Movie> movies = repository.getPage(page - 1, PAGE_SIZE);
         int pageCount = repository.numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
 
@@ -39,7 +38,7 @@ public class MovieController {
     private int[] toArray(int num) {
         int[] result = new int[num];
         for (int i = 0; i < num; i++) {
-            result[i] = i+1;
+            result[i] = i + 1;
         }
         return result;
     }

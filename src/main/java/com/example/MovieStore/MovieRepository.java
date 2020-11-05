@@ -46,7 +46,7 @@ public class MovieRepository {
         //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fos));
         for (String s: raw
              ) {
-            System.out.println(s);
+            
             /*if (s.contains("movie")) {
                 bufferedWriter.write(s);
                 bufferedWriter.newLine();
