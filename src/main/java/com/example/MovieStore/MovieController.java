@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class MovieController {
 
-    private static final int PAGE_SIZE = 25;
+    private static final int ITEMS_PER_PAGE = 20;
 
     @Autowired
     private MovieRepository repository;
@@ -24,13 +24,20 @@ public class MovieController {
     @GetMapping("/")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
-        List<Movie> movies = repository.getPage(page - 1, PAGE_SIZE);
-        int pageCount = repository.numberOfPages(PAGE_SIZE);
+        List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
+        int pageCount = repository.numberOfPages(ITEMS_PER_PAGE);
         int[] pages = toArray(pageCount);
 
         model.addAttribute("movies", movies);
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
+        model.addAttribute("firstPage", 1);
+        model.addAttribute("lastPage", page + 5);
+        if (page > 5) {
+            model.addAttribute("firstPage", page-5);
+        } else if (page > pageCount-5) {
+            model.addAttribute("lastPage", pageCount);
+        }
         model.addAttribute("showPrev", page > 1);
         model.addAttribute("showNext", page < pageCount);
 
