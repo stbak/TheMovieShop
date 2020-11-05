@@ -38,4 +38,23 @@ public class MemberRepository {
             members.add(member1);
     }
 
+    public boolean MemberLoginMatch(int memberID, String password){
+        boolean loginMatch=false;
+        for(Member member : members){
+            if(member.getMemberID() == memberID){
+                for (Member member2 : members){
+
+                    if(member.getPassword()!=password){
+                        loginMatch= false;
+                    }
+                    else{
+                        loginMatch= true;
+                    }
+                }
+
+            }
+        }return loginMatch;
+
+    }
+
 }
