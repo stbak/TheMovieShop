@@ -12,13 +12,13 @@ public class MemberRepository {
     public MemberRepository(){
         members = new ArrayList<>();
 
-        members.add(new Member(234123, "Kalle Anka", "Kalle@anka.com", "PWKajsaAnka!" ));
-        members.add(new Member(235222, "Pippi Långstrump", "Pippi@gmail.com", "lillaGubben123" ));
-        members.add(new Member(236323, "Tjorven", "tjorven@anka.com", "Båtsman" ));
-        members.add(new Member(237423, "Astrid Lindgren", "astrid@anka.com", "!lindgren!" ));
+        members.add(new Member(234, "Kalle Anka", "Kalle@anka.com", "PWKajsaAnka!" ));
+        members.add(new Member(235, "Pippi Långstrump", "Pippi@gmail.com", "lillaGubben123" ));
+        members.add(new Member(236, "Tjorven", "tjorven@anka.com", "Båtsman" ));
+        members.add(new Member(237, "Astrid Lindgren", "astrid@anka.com", "!lindgren!" ));
 
         for (int i = 1; i <= 5; i++) {
-            members.add(new Member(200543+i, "superMoviefan" + i, "email" + i + "@gmail.com", "Password" + i));
+            members.add(new Member(20+i, "superMoviefan" + i, "email" + i + "@gmail.com", "Password" + i));
         }
     }
 

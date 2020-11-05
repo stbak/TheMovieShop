@@ -16,16 +16,16 @@ public class MovieStoreApplicationTests {
 
 	@Test
 	public void checkLogInMatchFails() {
-		Assert.assertEquals(false, MemberRepository.MemberLoginMatch(234123,"KajsaAnka!"));
-		Assert.assertEquals(false, MemberRepository.MemberLoginMatch(234123,"PWKajsaAnk"));
-		Assert.assertEquals(false, MemberRepository.MemberLoginMatch(234124,"PWKajsaAnka!"));
+		Assert.assertEquals(false, MemberRepository.MemberLoginMatch(234,"KajsaAnka!"));
+		Assert.assertEquals(false, MemberRepository.MemberLoginMatch(234,"PWKajsaAnk"));
+		Assert.assertEquals(false, MemberRepository.MemberLoginMatch(237,"PWKajsaAnka!"));
 
 	}
 
 	@Test
 	public void checkLogInMatchSuccess() {
-		Assert.assertEquals(true, MemberRepository.MemberLoginMatch(234123,"PWKajsaAnka!"));
-		Assert.assertEquals(true, MemberRepository.MemberLoginMatch(236323,"Båtsman"));
+		Assert.assertEquals(true, MemberRepository.MemberLoginMatch(234,"PWKajsaAnka!"));
+		Assert.assertEquals(true, MemberRepository.MemberLoginMatch(236,"Båtsman"));
 	}
 }
 
