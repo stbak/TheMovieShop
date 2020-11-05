@@ -43,7 +43,7 @@ public class MovieController {
         }
         return result;
     }
-}
+
 
     @GetMapping("/members")
     public String member(Model model) {
