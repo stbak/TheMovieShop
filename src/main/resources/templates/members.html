@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <title>MoviePlanet</title>
 </head>
 <body>
-$END$
+<h1>Members</h1>
+<table>
+    <tr>
+        <th>MemberID</th>
+        <th>Name</th>
+        <th>email</th>
+        <th>Password</th>
+    </tr>
+    <tr th:each="member : ${members}">
+        <th th:text="${member.memberID}"></th>
+        <th th:text="${member.name}"></th>
+        <th th:text="${member.email}"></th>
+        <th th:text="${member.password}"></th>
+    </tr>
+</table>
+
 </body>
 </html>
