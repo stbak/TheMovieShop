@@ -40,6 +40,7 @@ public class MovieController {
         }
         model.addAttribute("showPrev", page > 1);
         model.addAttribute("showNext", page < pageCount);
+        model.addAttribute("totalNoPages", pageCount-1);
 
         return "imovie";
     }
