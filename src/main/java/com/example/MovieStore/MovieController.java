@@ -62,7 +62,6 @@ public class MovieController {
     }
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
-        model.addAttribute("message", "Please log in");
         return "LogInPage";
     }
 
@@ -82,9 +81,7 @@ public class MovieController {
 
     @GetMapping("/logout")
     String logout(HttpSession session) {
-
         session.removeAttribute("memberID");
-
         return "LogInPage";
     }
 }
