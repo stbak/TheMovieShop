@@ -21,6 +21,7 @@ public class MovieController {
     private MemberRepository repositoryMember;
 
 
+
     @GetMapping("/")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
@@ -40,8 +41,9 @@ public class MovieController {
         }
         model.addAttribute("showPrev", page > 1);
         model.addAttribute("showNext", page < pageCount);
+        model.addAttribute("totalNoPages", pageCount-1);
 
-        return "movies";
+        return "imovie";
     }
 
     private int[] toArray(int num) {
