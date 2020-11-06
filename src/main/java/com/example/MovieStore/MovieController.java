@@ -76,7 +76,7 @@ public class MovieController {
     }
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
-        return "LogInPage";
+        return "signIn";
     }
 
     @PostMapping("/tryLogin")
@@ -92,16 +92,23 @@ public class MovieController {
 
     }
 
-
     @GetMapping("/logout")
     String logout(HttpSession session) {
-        session.removeAttribute("memberID");
-        return "LogInPage";
+        session.removeAttribute("member");
+        return "signIn";
     }
 
-    @GetMapping("/index")
-    String index() {
-        return "index";
+
+    @GetMapping("/favourites")
+    public String favourites(Model model, HttpSession session) {
+        if(session.getAttribute("member")!=null){
+           Member member = (Member) session.getAttribute("member");
+            List<String> favouriteList = member.getFavouriteList();
+            model.addAttribute("favouriteList", favouriteList);
+            return "favourites";
+        }else{
+            return "signIn";
+        }
     }
 
 
