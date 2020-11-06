@@ -77,10 +77,24 @@ public class MovieController {
 
     }
 
-
     @GetMapping("/logout")
     String logout(HttpSession session) {
-        session.removeAttribute("memberID");
+        session.removeAttribute("member");
         return "LogInPage";
     }
+
+
+    @GetMapping("/favourites")
+    public String favourites(Model model, HttpSession session) {
+        if(session.getAttribute("member")!=null){
+           Member member = (Member) session.getAttribute("member");
+            List<String> favouriteList = member.getFavouriteList();
+            model.addAttribute("favouriteList", favouriteList);
+            return "favourites";
+        }else{
+            return "LogInPage";
+        }
+    }
+
+
 }
