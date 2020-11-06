@@ -33,8 +33,8 @@ public class MemberRepository {
 
     public static List<Member> memberList (){return members;}
 
-    public void addNewMember(int memberID, String password) {
-            Member member1 = new Member(memberID, password);
+    public void addNewMember(int memberID, String name, String email, String password) {
+            Member member1 = new Member(memberID, name,  email, password);
             members.add(member1);
     }
 
