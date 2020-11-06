@@ -1,16 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport"  content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Movie Planet</title>
 </head>
+
 <body>
-    <h4 class="border-bottom border-gray pb-2 mb-0">Movies</h4>
-    <table class="table table-striped">
-        <thead>
+<nav class="navbar navbar-expand-ld navbar-dark fixed-top bg-danger">
+    <a class="navbar-brand" href="#">
+        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Movie Planet
+    </a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search for movies..." aria-label="Search">
+        <button class="btn bg-light my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <span class="navdiv">
+                  <a class="nav-link" href="signIn.html" target="iframe">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                        Sign in
+                  </a>
+                  </span>
+    <span class="navdiv">
+                  <a class="nav-link" href="#">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                        </svg>
+                        Wish list
+                  </a>
+                  </span>
+    <span class="navdiv">
+                  <a class="nav-link" href="#">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cart3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                        Card
+                  </a>
+            </span>
+</nav>
+<!--   Second navbar-->
+<div class="nav-scroller bg-secondary shadow-sm">
+    <nav class="nav nav-underline">
+        <a class="nav-link active text-white" href="index.html">Home</a>
+        <a class="nav-link text-white" href="imovie.html">Movies</a>
+        <a class="nav-link text-white" href="imovie.html">Series</a>
+        <a class="nav-link text-white" href="#">Suggestions</a>
+        <a class="nav-link text-white" href="#">Link</a>
+
+    </nav>
+</div>
+
+<!-- Main -->
+
+<main role="main" class="container">
+
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+
+
+        <h4 class="border-bottom border-gray pb-2 mb-0">Movies</h4>
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
@@ -18,32 +75,47 @@
                 <th scope="col">Genre</th>
                 <th scope="col">Price</th>
             </tr>
-        </thead>
+            </thead>
             <tbody>
-                <tr th:each="movie : ${movies}">
-                    <td th:text="${movieStat.count}"></td>
-                    <td th:text="${movie.title}"></td>
-                    <td th:text="${movie.date}"></td>
-                    <td th:text="${movie.genres}"></td>
-                    <td th:text="${movie.price}"></td>
-                </tr>
+            <tr th:each="movie : ${movies}">
+                <td th:text="${movieStat.count}"></td>
+                <td th:text="${movie.title}"></td>
+                <td th:text="${movie.date}"></td>
+                <td th:text="${movie.genres}"></td>
+                <td th:text="${movie.price}"></td>
+            </tr>
             </tbody>
-    </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item" th:if="${showPrev}">
-                <a class="page-link" tabindex="-1" th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
-            </li>
-            <li class="page-item" th:each="page : ${pages}">
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:if="${showPrev}">
+                    <a class="page-link" tabindex="-1" th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
+                </li>
+                <li class="page-item" th:each="page : ${pages}">
                 <span class="page-item active" aria-current="page">
                     <span class="page-link" th:if="${currentPage == page}" th:text="${page}"></span>
                 </span>
-                <a class="page-link" th:if="${page >= firstPage && page <= lastPage && page != currentPage}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
-            </li>
-            <li class="page-item" th:if="${showNext}">
-                <a class="page-link" th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
-            </li>
-        </ul>
-    </nav>
+                    <a class="page-link" th:if="${page >= firstPage && page <= lastPage && page != currentPage}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
+                </li>
+                <li class="page-item" th:if="${showNext}">
+                    <a class="page-link" th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</main>
+
+<!-- Footer -->
+
+<footer class="footer mt-auto py-2 bg-secondary">
+    <div class="container">
+        <span class="text-muted"><a class="nav-link active text-white" href="#">some links maybe</a></span>
+    </div>
+</footer>
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>
