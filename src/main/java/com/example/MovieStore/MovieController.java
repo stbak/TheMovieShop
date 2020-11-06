@@ -82,7 +82,7 @@ public class MovieController {
     @GetMapping("/logout")
     String logout(HttpSession session) {
         session.removeAttribute("member");
-        return "LogInPage";
+        return "signIn";
     }
 
 
@@ -94,7 +94,7 @@ public class MovieController {
             model.addAttribute("favouriteList", favouriteList);
             return "favourites";
         }else{
-            return "LogInPage";
+            return "signIn";
         }
     }
 
