@@ -48,9 +48,9 @@
 <!--   Second navbar-->
 <div class="nav-scroller bg-secondary shadow-sm">
     <nav class="nav nav-underline">
-        <a class="nav-link active text-white" href="index.html">Home</a>
-        <a class="nav-link text-white" href="imovie.html">Movies</a>
-        <a class="nav-link text-white" href="imovie.html">Series</a>
+        <a class="nav-link active text-white" href="/">Home</a>
+        <a class="nav-link text-white" href="/imovie">Movies</a>
+        <a class="nav-link text-white" href="/imovie">Series</a>
         <a class="nav-link text-white" href="#">Suggestions</a>
         <a class="nav-link text-white" href="#">Link</a>
 
@@ -84,7 +84,7 @@
                     <td th:text="${movie.date}"></td>
                     <td th:text="${movie.genres}"></td>
                     <td th:text="${movie.price}"></td>
-                    <td><a th:href="'/cart/?movie=' + ${movie}" th:text="Buy"></a></td>
+                    <td><a th:href="'/cart/?movie=' + ${movie.tId}" th:text="Buy"></a></td>
                 </tr>
             </tbody>
         </table>

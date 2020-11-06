@@ -78,9 +78,9 @@ public class MovieRepository {
         return (int)Math.ceil(new Double(movies.size()) / pageSize);
     }
 
-    public Movie getMovie(int id) {
+    public Movie getMovie(String id) {
         for (Movie movie : movies) {
-            if (movie.getId() == id) {
+            if (movie.getId().equals(id)) {
                 return movie;
             }
         }
