@@ -74,16 +74,18 @@
                 <th scope="col">Created year</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Price</th>
+                <th scope="col">Purchase</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="movie : ${movies}">
-                <td th:text="${movieStat.count}"></td>
-                <td th:text="${movie.title}"></td>
-                <td th:text="${movie.date}"></td>
-                <td th:text="${movie.genres}"></td>
-                <td th:text="${movie.price}"></td>
-            </tr>
+                <tr th:each="movie : ${movies}">
+                    <td th:text="${movieStat.count}"></td>
+                    <td><a th:href="'https://www.imdb.com/title/' + ${movie.tId}" target="_blank" th:text="${movie.title}"></a></td>
+                    <td th:text="${movie.date}"></td>
+                    <td th:text="${movie.genres}"></td>
+                    <td th:text="${movie.price}"></td>
+                    <td><a th:href="'/cart/?title=' + ${movie.title} + '&price=' + ${movie.price}" th:text="Buy"></a></td>
+                </tr>
             </tbody>
         </table>
         <nav aria-label="Page navigation example">

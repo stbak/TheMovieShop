@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MovieController {
@@ -19,6 +20,9 @@ public class MovieController {
     private MovieRepository repository;
     @Autowired
     private MemberRepository repositoryMember;
+    @Autowired
+    private Cart shoppingCart;
+
 
 
     @GetMapping("/")
@@ -42,7 +46,17 @@ public class MovieController {
         model.addAttribute("showNext", page < pageCount);
         model.addAttribute("totalNoPages", pageCount-1);
 
+
         return "imovie";
+    }
+
+    @GetMapping("/cart")
+    public String cart(Model model, @RequestParam(value = "title", required = false, defaultValue = "empty") String title, @RequestParam(value = "price", required = false, defaultValue = "0") Double price) {
+        Map<Double, String> items = shoppingCart.getCart();
+
+        items.put(price, title);
+        model.addAttribute("cart", items);
+        return "cart";
     }
 
     private int[] toArray(int num) {
@@ -62,7 +76,7 @@ public class MovieController {
     }
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
-        return "LogInPage";
+        return "signIn";
     }
 
     @PostMapping("/tryLogin")
@@ -78,10 +92,24 @@ public class MovieController {
 
     }
 
-
     @GetMapping("/logout")
     String logout(HttpSession session) {
-        session.removeAttribute("memberID");
-        return "LogInPage";
+        session.removeAttribute("member");
+        return "signIn";
     }
+
+
+    @GetMapping("/favourites")
+    public String favourites(Model model, HttpSession session) {
+        if(session.getAttribute("member")!=null){
+           Member member = (Member) session.getAttribute("member");
+            List<String> favouriteList = member.getFavouriteList();
+            model.addAttribute("favouriteList", favouriteList);
+            return "favourites";
+        }else{
+            return "signIn";
+        }
+    }
+
+
 }
