@@ -21,6 +21,7 @@ public class MovieController {
     private MemberRepository repositoryMember;
 
 
+
     @GetMapping("/")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
