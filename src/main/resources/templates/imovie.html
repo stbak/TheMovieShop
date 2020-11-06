@@ -84,7 +84,7 @@
                     <td th:text="${movie.date}"></td>
                     <td th:text="${movie.genres}"></td>
                     <td th:text="${movie.price}"></td>
-                    <td><a th:href="'/cart/?movie=' + ${movie}" th:text="Buy"></a></td>
+                    <td><a th:href="'/cart/?movie=' + ${movie.tId}" th:text="Buy"></a></td>
                 </tr>
             </tbody>
         </table>

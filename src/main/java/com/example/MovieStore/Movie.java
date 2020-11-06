@@ -37,8 +37,8 @@ public class Movie {
 
 
 
-    public Integer getId() {
-        return id;
+    public String getId() {
+        return tId;
     }
 
     public String getTitle() {
