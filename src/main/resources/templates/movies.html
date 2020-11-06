@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Movies</title>
+    <title>The Movie Planet Shop</title>
+
 </head>
 <body>
 <h1>Movies</h1>
@@ -21,20 +22,28 @@
         <th th:text="${movie.genres}"></th>
         <th th:text="${movie.price}"></th>
     </tr>
+    <tr>
+        <th colspan="5">
+            <span th:if="${currentPage > 1}"><a th:href="'/?page=1&era=' + ${era}" th:text="First "></a></span>
+            <span th:if="${showPrev}"><a th:href="'/?page=' + ${currentPage-1} + '&era=' + ${era}" th:text="Previous "></a></span>
+            <span><a th:href="'/?page=' + ${currentPage+1} + '&era=' + ${era}" th:text="Next "></a></span>
+            <span th:if="${currentPage <= totalNoPages}"><a th:href="'/?page=' + ${totalNoPages} + '&era=' + ${era}" th:text="Last"></a></span>
+        </th>
+    </tr>
+    <tr>
+        <th colspan="5">
+            <span id="allPagesNav" th:each="page : ${pages}">
+                <span th:if="${currentPage == page}" th:text="${page}"></span>
+                <a th:if="${page >= firstPage && page <= lastPage && page != currentPage}" th:href="'/?page=' + ${page} + '&era=' + ${era}" th:text="${page}"></a>
+            </span>
+        </th>
+    </tr>
+    <!--tr>
+        <td colspan="5">
+            <a href="/era=new">New (2000-now)</a> - <a href="/era=modern">80's and 90's</a> - <a href="dated">60's and 70's</a>
+        </td>
+    </tr-->
 </table>
-<div>
-        <span th:if="${showPrev}">
-            <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
-        </span>
 
-    <span th:each="page : ${pages}">
-        <span th:if="${currentPage == page}" th:text="${page}"></span>
-        <a th:if="${page >= firstPage && page <= lastPage && page != currentPage}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
-    </span>
-
-    <span th:if="${showNext}">
-        <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
-    </span>
-</div>
 </body>
 </html>
