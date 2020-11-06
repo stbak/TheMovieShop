@@ -23,9 +23,12 @@ public class MovieController {
     @Autowired
     private Cart shoppingCart;
 
-
-
     @GetMapping("/")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/imovie")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
         List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
