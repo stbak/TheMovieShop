@@ -69,12 +69,15 @@ public class MovieController {
     @PostMapping("/tryLogin")
     String form(@RequestParam Integer memberID, String password, Model model, HttpSession session) {
         Member member = MemberRepository.MemberLoginMatch(memberID, password);
+
         if(member!=null){
             session.setAttribute("member", member);
             return "SuccessLoginPage";
         }
         else{
-            return "FailedLoginPage";
+            model.addAttribute("message", "Wrong Member ID or password, please try again");
+            return "signIn";
+
         }
 
     }

@@ -12,7 +12,7 @@ public class MemberRepository {
     public MemberRepository(){
         members = new ArrayList<>();
 
-        members.add(new Member(234, "Kalle Anka", "Kalle@anka.com", "PWKajsaAnka!" ));
+        members.add(new Member(234, "Kalle Anka", "Kalle@anka.com", "PW" ));
         members.add(new Member(235, "Pippi Långstrump", "Pippi@gmail.com", "lillaGubben123" ));
         members.add(new Member(236, "Tjorven", "tjorven@gmail.com", "Båtsman" ));
         members.add(new Member(237, "Astrid Lindgren", "astrid@gmail.com", "!lindgren!" ));
