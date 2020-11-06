@@ -112,4 +112,14 @@ public class MovieController {
     }
 
 
+    @GetMapping("/payment")
+    public String payment(Model model, HttpSession session) {
+        return "payment";
+    }
+
+    @GetMapping("/orderConfirmation")
+    public String orderConfirmation(Model model, HttpSession session) {
+        return "orderConfirmation";
+    }
+
 }
