@@ -25,8 +25,10 @@ public class MovieController {
     @Autowired
     private Cart shoppingCart;
 
-    private List<Movie> items = new ArrayList<>();
-
+    @GetMapping("/")
+    public String index(){
+        return "index";
+    }
 
 
     @GetMapping("/")
@@ -88,12 +90,15 @@ public class MovieController {
     @PostMapping("/tryLogin")
     String form(@RequestParam Integer memberID, String password, Model model, HttpSession session) {
         Member member = MemberRepository.MemberLoginMatch(memberID, password);
+
         if(member!=null){
             session.setAttribute("member", member);
             return "SuccessLoginPage";
         }
         else{
-            return "FailedLoginPage";
+            model.addAttribute("message", "Wrong Member ID or password, please try again");
+            return "signIn";
+
         }
 
     }
@@ -117,5 +122,15 @@ public class MovieController {
         }
     }
 
+
+    @GetMapping("/payment")
+    public String payment(Model model, HttpSession session) {
+        return "payment";
+    }
+
+    @GetMapping("/orderConfirmation")
+    public String orderConfirmation(Model model, HttpSession session) {
+        return "orderConfirmation";
+    }
 
 }
