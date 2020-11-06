@@ -144,7 +144,7 @@ public class MovieController {
     }
 
     @GetMapping("/orderConfirmation")
-    public String orderConfirmation(Model model, HttpSession session) {
+    public String orderConfirmation() {
         return "orderConfirmation";
     }
 
