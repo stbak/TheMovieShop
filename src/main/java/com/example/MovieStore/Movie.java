@@ -35,6 +35,8 @@ public class Movie {
         this.price = price;
     }
 
+
+
     public Integer getId() {
         return id;
     }

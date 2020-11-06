@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MovieController {
@@ -19,6 +20,8 @@ public class MovieController {
     private MovieRepository repository;
     @Autowired
     private MemberRepository repositoryMember;
+    @Autowired
+    private Cart shoppingCart;
 
 
 
@@ -43,7 +46,17 @@ public class MovieController {
         model.addAttribute("showNext", page < pageCount);
         model.addAttribute("totalNoPages", pageCount-1);
 
+
         return "imovie";
+    }
+
+    @GetMapping("/cart")
+    public String cart(Model model, @RequestParam(value = "title", required = false, defaultValue = "empty") String title, @RequestParam(value = "price", required = false, defaultValue = "0") Double price) {
+        Map<Double, String> items = shoppingCart.getCart();
+
+        items.put(price, title);
+        model.addAttribute("cart", items);
+        return "cart";
     }
 
     private int[] toArray(int num) {
