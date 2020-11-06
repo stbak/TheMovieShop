@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class MovieController {
     @Autowired
     private Cart shoppingCart;
 
+    private List<Movie> items = new ArrayList<>();
 
 
 
@@ -53,13 +55,14 @@ public class MovieController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model shop, @RequestParam(value = "movie", required = true) Movie movie) {
-        List<Movie> items = shoppingCart.addItemToBuy(movie);
-        //System.out.println("Title: " + title + ", price" + price);
-        //shoppingCart.addItemToBuy(title, price);
+    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") String id) {
 
+        Movie movie = repository.getMovie(id);
+        items.add(movie);
+        System.out.println(id);
         shop.addAttribute("mycart", items);
         return "cart";
+
     }
 
     private int[] toArray(int num) {
