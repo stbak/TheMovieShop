@@ -43,7 +43,7 @@ public class MovieController {
         model.addAttribute("showNext", page < pageCount);
         model.addAttribute("totalNoPages", pageCount-1);
 
-        return "movies";
+        return "imovie";
     }
 
     private int[] toArray(int num) {
