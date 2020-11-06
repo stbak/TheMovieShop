@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ public class MovieController {
     private MemberRepository repositoryMember;
     @Autowired
     private Cart shoppingCart;
+
 
 
 
@@ -51,11 +53,12 @@ public class MovieController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model model, @RequestParam(value = "title", required = false, defaultValue = "empty") String title, @RequestParam(value = "price", required = false, defaultValue = "0") Double price) {
-        Map<Double, String> items = shoppingCart.getCart();
+    public String cart(Model shop, @RequestParam(value = "movie", required = true) Movie movie) {
+        List<Movie> items = shoppingCart.addItemToBuy(movie);
+        //System.out.println("Title: " + title + ", price" + price);
+        //shoppingCart.addItemToBuy(title, price);
 
-        items.put(price, title);
-        model.addAttribute("cart", items);
+        shop.addAttribute("mycart", items);
         return "cart";
     }
 
