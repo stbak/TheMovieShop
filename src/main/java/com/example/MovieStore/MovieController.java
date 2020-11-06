@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,10 @@ public class MovieController {
     @Autowired
     private Cart shoppingCart;
 
+    @GetMapping("/")
+    public String index(){
+        return "index";
+    }
 
 
     @GetMapping("/")
@@ -51,11 +56,12 @@ public class MovieController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model model, @RequestParam(value = "title", required = false, defaultValue = "empty") String title, @RequestParam(value = "price", required = false, defaultValue = "0") Double price) {
-        Map<Double, String> items = shoppingCart.getCart();
+    public String cart(Model shop, @RequestParam(value = "movie", required = true) Movie movie) {
+        List<Movie> items = shoppingCart.addItemToBuy(movie);
+        //System.out.println("Title: " + title + ", price" + price);
+        //shoppingCart.addItemToBuy(title, price);
 
-        items.put(price, title);
-        model.addAttribute("cart", items);
+        shop.addAttribute("mycart", items);
         return "cart";
     }
 
@@ -82,12 +88,15 @@ public class MovieController {
     @PostMapping("/tryLogin")
     String form(@RequestParam Integer memberID, String password, Model model, HttpSession session) {
         Member member = MemberRepository.MemberLoginMatch(memberID, password);
+
         if(member!=null){
             session.setAttribute("member", member);
             return "SuccessLoginPage";
         }
         else{
-            return "FailedLoginPage";
+            model.addAttribute("message", "Wrong Member ID or password, please try again");
+            return "signIn";
+
         }
 
     }
