@@ -63,7 +63,7 @@ public class MovieController {
     }
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
-        return "LogInPage";
+        return "signIn";
     }
 
     @PostMapping("/tryLogin")
