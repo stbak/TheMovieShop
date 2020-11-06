@@ -10,7 +10,7 @@ import java.util.Map;
 @Service
 public class Cart {
 
-    private Map<Double, String> cart = new HashMap<Double, String>();
+    private List<Movie> cart = new ArrayList<>();
     private String title;
     private Double price;
 
@@ -18,15 +18,14 @@ public class Cart {
 
     }
 
-    public Cart(Double price, String title) {
-        cart.put(price, title);
-    }
 
-    public Map<Double, String> getCart() {
+
+    public List<Movie> getCart() {
         return cart;
     }
 
-    public void addItemToBuy(Double price, String title) {
-        cart.put(price, title);
+    public List<Movie> addItemToBuy(Movie movie) {
+        cart.add(movie);
+        return cart;
     }
 }
