@@ -25,6 +25,8 @@ public class MovieController {
     @Autowired
     private Cart shoppingCart;
 
+    private List<Movie> items = new ArrayList<>();
+
     @GetMapping("/")
     public String index(){
         return "index";
