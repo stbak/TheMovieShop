@@ -107,7 +107,6 @@ body {
 }
 
 
-
 .progress-bar-orderConfirmation {
   display: flex;
   margin-bottom: 50px;
@@ -164,10 +163,21 @@ body {
   color: #dc3545;
 }
 
-
-
-
-
+.step-orderConfirmation:nth-child(1):before {
+  content: 'Delivery';
+}
+.step-orderConfirmation:nth-child(2):before {
+  right: -40px;
+  content: 'Confirmation';
+}
+.step-orderConfirmation:nth-child(3):before {
+  right: -30px;
+  content: 'Payment';
+}
+.step-orderConfirmation:nth-child(4):before {
+  right: 0;
+  content: 'Finish';
+}
 
 .payment-method {
   display: flex;
