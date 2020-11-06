@@ -124,14 +124,27 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/signup")
+    public String signup(Model model, HttpSession session) {
+
+        return "signUp";
+    }
+    @PostMapping("/newMember")
+    String newMember(@RequestParam String name, String email, String password, Model model, HttpSession session) {
+      repositoryMember.addNewMember(600,name, email, password);
+
+        return "SignIn";
+
+    }
 
     @GetMapping("/payment")
-    public String payment(Model model, HttpSession session) {
+    public String payment(Model model, String price) {
+        model.addAttribute("price", price);
         return "payment";
     }
 
     @GetMapping("/orderConfirmation")
-    public String orderConfirmation(Model model, HttpSession session) {
+    public String orderConfirmation() {
         return "orderConfirmation";
     }
 
