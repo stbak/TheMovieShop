@@ -33,7 +33,7 @@ public class MovieController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/imovie")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
         List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
@@ -126,7 +126,8 @@ public class MovieController {
 
 
     @GetMapping("/payment")
-    public String payment(Model model, HttpSession session) {
+    public String payment(Model model, String price) {
+        model.addAttribute("price", price);
         return "payment";
     }
 
