@@ -30,7 +30,7 @@ public class MovieController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/imovie")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
         List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
