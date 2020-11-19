@@ -27,6 +27,7 @@ public class MovieStoreApplicationTests {
 		List<Member> memberList = new ArrayList<>(MemberRepository.memberList());
 		Assert.assertEquals(memberList.get(0), MemberRepository.MemberLoginMatch(234,"PWKajsaAnka!"));
 		Assert.assertEquals(memberList.get(2), MemberRepository.MemberLoginMatch(236,"Båtsman"));
+
 	}
 }
 
