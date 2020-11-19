@@ -5,7 +5,6 @@ INSERT INTO MEMBER (FullName, Email, Password) VALUES ('Astrid Lindgren', 'astri
 INSERT INTO MEMBER (FullName, Email, Password) VALUES ('Hercules', 'hercules@gmail.com', 'PW');
 
 INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES(1000, 'Antebellum',2020,	'Horror', 'Janelle Monáe, Eric Lange, Jena Malone', 'Gerard Bush',105, '5,5', 450, 'Successful author Veronica Henley finds herself trapped in a horrifying reality and must uncover the mind-bending mystery before its too late.');
-INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES();
-INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES();
+
 
 

@@ -113,7 +113,7 @@ public class MemberRepository {
         }return null;*/
 
     }
-    
+
     public static Member MemberEmailMatch(String email, String password){
         Member member = null;
         try(Connection conn = dataSource.getConnection();
