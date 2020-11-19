@@ -35,7 +35,6 @@ public class MovieRepository {
             Double moviePrice;
             int year;
 
-
             movieDetail = s.split("\t");
             try {
                 year = Integer.parseInt(movieDetail[5]);
@@ -98,24 +97,11 @@ public class MovieRepository {
         }
         return true;
     }
-    /*
-    public void getDataFromData1ToMovieDB() throws IOException {
 
-        File fout = new File("movieDB2.txt");
-        FileOutputStream fos = new FileOutputStream(fout);
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fos));
-        for (String s: raw) {
-
-            if (s.contains("movie")) { //if you only wants movies in the movieDB file, otherwise add e.g. "short", "tvMovie" etc...look in Data1.txt for types
-                bufferedWriter.write(s);
-                bufferedWriter.newLine();
-            }
-
-        }
-        bufferedWriter.close();
-
+    public void fillDatabase(String string) {
+        //System.out.println("Filling database " + string);
     }
-    */
+
 
 
 
