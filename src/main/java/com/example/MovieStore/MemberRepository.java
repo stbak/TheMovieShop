@@ -72,7 +72,7 @@ public class MemberRepository {
                 rs.getString("password"));
     }
 
-    //EJ UPPDATERAD
+
     public void addNewMember(String fullName, String email, String password) {
 
         try (Connection conn = dataSource.getConnection();
@@ -113,7 +113,7 @@ public class MemberRepository {
         }return null;*/
 
     }
-    //EJ UPPDATERAD
+    
     public static Member MemberEmailMatch(String email, String password){
         Member member = null;
         try(Connection conn = dataSource.getConnection();
