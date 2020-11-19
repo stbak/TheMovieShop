@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Member {
     private int memberID;
-    private String name;
+    private String fullName;
     private String email;
     private String password;
     private List<String> favouriteList = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Member {
 
     public Member(int memberID, String name, String email, String password){
     this.memberID=memberID;
-    this.name=name;
+    this.fullName =name;
     this.email=email;
     this.password=password;
     }
@@ -31,12 +31,12 @@ public class Member {
         this.memberID = memberID;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
