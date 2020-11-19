@@ -85,6 +85,7 @@ public class MovieController {
         model.addAttribute("members", memberList);
         return "members";
     }
+
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
         return "signIn";
@@ -92,7 +93,7 @@ public class MovieController {
 
     @PostMapping("/tryLogin")
     String form(@RequestParam Integer memberID, String password, Model model, HttpSession session) {
-        Member member = MemberRepository.MemberLoginMatch(memberID, password);
+        Member member = repositoryMember.MemberLoginMatch(memberID, password);
 
         if(member!=null){
             session.setAttribute("member", member);

@@ -1,6 +1,7 @@
 package com.example.MovieStore;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -12,33 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Repository
 public class MemberRepository {
 
     @Autowired
-    private static DataSource dataSource;
+    private DataSource dataSource;
 
-
-
-
-   /*  public MemberRepository(){
-
-        members = new ArrayList<>();
-        members.add(new Member(234, "Kalle Anka", "Kalle@anka.com", "PW" ));
-        members.add(new Member(235, "Pippi Långstrump", "Pippi@gmail.com", "lillaGubben123" ));
-        members.add(new Member(236, "Tjorven", "tjorven@gmail.com", "Båtsman" ));
-        members.add(new Member(237, "Astrid Lindgren", "astrid@gmail.com", "!lindgren!" ));
-
-        for (int i = 1; i <= 5; i++) {
-            members.add(new Member(20+i, "superMoviefan" + i, "email" + i + "@gmail.com", "Password" + i));
-
-    } }*/
-
-    public Member getMember(int memberid) {
+    public Member getMember(int memberID) {
         Member member =null;
         try(Connection conn=dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT M.MEMBERID, M.FULLNAME, M.EMAIL FROM MEMBER AS M WHERE M.ID = ?")){
-            ps.setInt(1,memberid);
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM MEMBER AS M WHERE M.MEMBERID = ?")){
+            ps.setInt(1,memberID);
             ResultSet rs =ps.executeQuery();
+            if(rs.next()){
+                member=(rsMember(rs));
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }return member;
@@ -51,10 +40,10 @@ public class MemberRepository {
         return null;*/
     }
 
-    public static List<Member> memberList (){
+    public List<Member> memberList (){
         List<Member> members = new ArrayList<>();
         try(Connection conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT M.MEMBERID, M.FULLNAME, M.EMAIL FROM MEMBER")){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM MEMBER")){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 members.add(rsMember(rs));
@@ -65,8 +54,8 @@ public class MemberRepository {
         return members;
     }
 
-    private static Member rsMember(ResultSet rs) throws SQLException {
-        return new Member(rs.getInt("id"),
+    private Member rsMember(ResultSet rs) throws SQLException {
+        return new Member(rs.getInt("memberID"),
                 rs.getString("fullname"),
                 rs.getString("email"),
                 rs.getString("password"));
@@ -76,7 +65,7 @@ public class MemberRepository {
     public void addNewMember(String fullName, String email, String password) {
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement("INSERT INTO MEMBER (FULLNAME, EMAIL, PASSWORD) VALUES (?,?,?);")) {
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO MEMBER (FULLNAME, EMAIL, PASSWORD) VALUES (?,?,?)")) {
             ps.setString(1, fullName);
             ps.setString(2, email);
             ps.setString(3, password);
@@ -94,13 +83,16 @@ public class MemberRepository {
 
 
 
-    public static Member MemberLoginMatch(int memberID, String password){
+    public Member MemberLoginMatch(int memberID, String password){
        Member member = null;
         try(Connection conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT M.MEMBERID, M.FULLNAME, M.EMAIL FROM MEMBER WHERE M.MEMBERID=? AND M.PASSWORD=?")){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM MEMBER AS M WHERE M.MemberId=? AND M.Password=?")){
             ps.setInt(1, memberID);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                member=(rsMember(rs));
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -114,13 +106,16 @@ public class MemberRepository {
 
     }
 
-    public static Member MemberEmailMatch(String email, String password){
+    public Member MemberEmailMatch(String email, String password){
         Member member = null;
         try(Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT M.MEMBERID, M.FULLNAME, M.EMAIL FROM MEMBER WHERE M.EMAIL=? AND M.PASSWORD=?")){
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                member=(rsMember(rs));
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
