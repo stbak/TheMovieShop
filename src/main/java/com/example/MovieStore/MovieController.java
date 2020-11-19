@@ -131,9 +131,10 @@ public class MovieController {
     }
     @PostMapping("/newMember")
     String newMember(@RequestParam String name, String email, String password, Model model, HttpSession session) {
-      repositoryMember.addNewMember(600,name, email, password);
-
-        return "SignIn";
+      repositoryMember.addNewMember(name, email, password);
+        Member newMember = repositoryMember.MemberEmailMatch(email, password);
+        session.setAttribute("newMember", newMember);
+        return "signIn";
 
     }
 

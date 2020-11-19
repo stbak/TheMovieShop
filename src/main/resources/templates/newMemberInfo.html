@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>New member</title>
 </head>
 <body>
-$END$
+<h1>New Member</h1>
+
+<table>
+    <tr>
+        <th>MemberID</th>
+        <th>Name</th>
+        <th>email</th>
+        <th>Password</th>
+    </tr>
+    <tr>
+        <th th:text="${session.newMember.memberID}"></th>
+        <th th:text="${session.newMember.name}"></th>
+        <th th:text="${session.newMember.email}"></th>
+        <th th:text="${session.newMember.password}"></th>
+    </tr>
+</table>
+
 </body>
 </html>
