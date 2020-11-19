@@ -18,9 +18,7 @@ public class Cart {
 
     }
 
-
-
-    public List<Movie> getCart() {
+public List<Movie> getCart() {
         return cart;
     }
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +35,8 @@ public class MovieController {
 
 
     @GetMapping("/imovie")
-    public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) throws IOException {
+
 
         List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
         int pageCount = repository.numberOfPages(ITEMS_PER_PAGE);
@@ -53,7 +55,6 @@ public class MovieController {
         model.addAttribute("showPrev", page > 1);
         model.addAttribute("showNext", page < pageCount);
         model.addAttribute("totalNoPages", pageCount-1);
-
 
         return "imovie";
     }
@@ -139,13 +140,16 @@ public class MovieController {
     }
 
     @GetMapping("/payment")
-    public String payment(Model model, HttpSession session) {
+    public String payment(Model model, String price) {
+        model.addAttribute("price", price);
         return "payment";
     }
 
     @GetMapping("/orderConfirmation")
-    public String orderConfirmation(Model model, HttpSession session) {
+    public String orderConfirmation() {
         return "orderConfirmation";
     }
+
+
 
 }
