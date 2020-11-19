@@ -1,11 +1,12 @@
 package com.example.MovieStore;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -36,7 +37,6 @@ public class MovieController {
 
     @GetMapping("/imovie")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) throws IOException {
-
 
         List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
         int pageCount = repository.numberOfPages(ITEMS_PER_PAGE);
@@ -79,12 +79,13 @@ public class MovieController {
     }
 
     @GetMapping("/members")
-    public String member(Model model) {
-
+    public String member(Model model, HttpSecurity http) {
+        System.out.println(http);
         List<Member> memberList = repositoryMember.memberList();
         model.addAttribute("members", memberList);
         return "members";
     }
+
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
         return "signIn";
@@ -112,7 +113,6 @@ public class MovieController {
         return "signIn";
     }
 
-
     @GetMapping("/favourites")
     public String favourites(Model model, HttpSession session) {
         if(session.getAttribute("member")!=null){
@@ -130,6 +130,7 @@ public class MovieController {
 
         return "signUp";
     }
+
     @PostMapping("/newMember")
     String newMember(@RequestParam String name, String email, String password, Model model, HttpSession session) {
       repositoryMember.addNewMember(600,name, email, password);
