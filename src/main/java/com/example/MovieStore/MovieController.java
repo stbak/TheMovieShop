@@ -35,6 +35,7 @@ public class MovieController {
     }
 
 
+
     @GetMapping("/imovie")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) throws IOException {
 
@@ -79,8 +80,7 @@ public class MovieController {
     }
 
     @GetMapping("/members")
-    public String member(Model model, HttpSecurity http) {
-        System.out.println(http);
+    public String member(Model model) {
         List<Member> memberList = repositoryMember.memberList();
         model.addAttribute("members", memberList);
         return "members";
