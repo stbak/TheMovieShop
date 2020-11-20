@@ -1,91 +1,80 @@
 package com.example.MovieStore;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Service
+@Repository
 public class MovieRepository {
-    private List<Movie> movies;
-    private List<Movie> seivom;
-    private List<String> raw;
-    private BufferedReader bufferedReader = new BufferedReader(new FileReader("movieDB.txt")); //change to data1.txt if you want to get data out of data1 into movieDB
-    private String[] movieDetail;
-    private int moviesNeverThan = 1960;
+
+    @Autowired
+    private DataSource dataSource;
 
 
-    public MovieRepository() throws IOException {
-        seivom = new ArrayList<>();
-        movies = new ArrayList<>();
-        raw = new ArrayList<>();
 
 
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            raw.add(line);
-            line = bufferedReader.readLine();
-        }
+    public List<Movie> MovieList() throws IOException {
+        List<Movie> movies = new ArrayList<>();
 
-        for (String s: raw) {
-
-            //now split by tab
-            Double moviePrice;
-            int year;
-
-            movieDetail = s.split("\t");
-            try {
-                year = Integer.parseInt(movieDetail[5]);
-            } catch (Exception e) {
-                year = 1800;
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps = conn.prepareStatement("SELECT * FROM Movie")
+        ) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                movies.add(rsMovie(rs));
             }
 
-            if (year < 1950) {
-                moviePrice = 25.00;
-            } else if (year > 1950 && year < 1975) {
-                moviePrice = 40.00;
-            } else if (year > 1975 && year < 2000) {
-                moviePrice = 55.00;
-            } else if (year > 2000 && year < 2015) {
-                moviePrice = 150.00;
-            } else if (year > 2015 && year < 2020) {
-                moviePrice = 180.00;
-            } else if (year >= 2020) {
-                moviePrice = 340.00;
-            } else {
-                moviePrice = 1.00;
-            }
-            if (isNumeric(movieDetail[5]) && !movieDetail[8].equals("\\N") && year >= moviesNeverThan)
-                seivom.add(new Movie(movieDetail[0], movieDetail[2], movieDetail[5], movieDetail[7], movieDetail[8], moviePrice));
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        for (int i = seivom.size()-1; i >= 0; i--) {
-            movies.add(seivom.get(i));
-        }
+        return movies;
     }
 
-    public List<Movie> getPage(int page, int pageSize) {
+
+    private Movie rsMovie(ResultSet rs) throws SQLException {
+        return new Movie(rs.getInt("MovieId"),
+                rs.getInt("ImgId"),
+                rs.getString("Title"),
+                rs.getInt("MovieYear"),
+                rs.getString("Genre"),
+                rs.getString("Stars"),
+                rs.getString("Director"),
+                rs.getInt("PlayTime"),
+                rs.getString("Rate"),
+                rs.getInt("Price"),
+                rs.getString("Description"));
+    }
+
+    public List<Movie> getPage(int page, int pageSize) throws IOException {
         int from = Math.max(0,page*pageSize);
-        int to = Math.min(movies.size(),(page+1)*pageSize);
-        return movies.subList(from, to);
+        int to = Math.min(MovieList().size(),(page+1)*pageSize);
+        return MovieList().subList(from, to);
     }
 
-    public int numberOfPages(int pageSize) {
-        return (int)Math.ceil(new Double(movies.size()) / pageSize);
+    public int numberOfPages(int pageSize) throws IOException {
+        return (int)Math.ceil(new Double(MovieList().size()) / pageSize);
     }
 
-    public Movie getMovie(String id) {
-        for (Movie movie : movies) {
+    public Movie getMovie(Integer id) throws IOException {
+        for (Movie movie : MovieList()) {
             if (movie.getId().equals(id)) {
                 return movie;
             }
         }
         return null;
     }
-
     public static boolean isNumeric(String str) {
         if (str == null) {
             return false;
@@ -97,12 +86,9 @@ public class MovieRepository {
         }
         return true;
     }
-
     public void fillDatabase(String string) {
         //System.out.println("Filling database " + string);
     }
-
-
 
 
 }

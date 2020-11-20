@@ -19,6 +19,7 @@ public class MovieController {
 
     @Autowired
     private MovieRepository repository;
+
     @Autowired
     private MemberRepository repositoryMember;
     @Autowired
@@ -58,7 +59,7 @@ public class MovieController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") String id) {
+    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") Integer id) throws IOException {
 
         Movie movie = repository.getMovie(id);
         items.add(movie);
@@ -84,7 +85,10 @@ public class MovieController {
     }
 
     @GetMapping("/memberlogin")
-    public String loginPage(Model model) {
+    public String loginPage(Model model, HttpSession session) {
+        if (session.getAttribute("newMember") != null) {
+            session.removeAttribute("newMember");
+        }
         return "signIn";
     }
 
