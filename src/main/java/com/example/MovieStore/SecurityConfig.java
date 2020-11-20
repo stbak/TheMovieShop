@@ -18,12 +18,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/imovie", "/signIn", "/signUp",  "/h2", "/h2/**").permitAll()
+                .antMatchers("/", "/imovie", "/memberLogin", "/signup", "/h2", "/h2/**").permitAll()
                 .antMatchers("/members").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/signIn")
+                .loginPage("/memberlogin")
                 .permitAll();
         http.csrf().disable();
         http.headers().frameOptions().disable();
