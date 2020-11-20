@@ -70,23 +70,23 @@
 <main role="main" class="container">
 
     <table>
-        <th><span th:text="${movie.title}"></span> <span th:text="' (' +${movie.MovieYear} +'')''"></span></th>
+        <th><span th:text="${title}"></span> <span th:text="' (' +${year} +')'"></span></th>
         <tr>
-            <td><img th:src="'/img/' + ${movie.imgId}" alt=""></td>
+            <td><img th:src="'/img/' + ${imgId} + '.jpg'" alt=""></td>
             <td>
                 <div>
-                    <p>Actors: </p><p th:text="${movie.Stars}"></p>
-                    <p>Director: </p><p th:text="${movie.Director}"></p>
-                    <p>Genre: </p><p th:text="${movie.Genre}"></p>
-                    <p>Play time:</p><p th:text="${movie.PlayTime}"></p>
-                    <p>Rating: </p><p th:text="${movie.Rate}"></p>
-                    <p>Price: </p><p th:text="${movie.Price}"></p>
+                    <p>Actors: </p><p th:text="${actors}"></p>
+                    <p>Director: </p><p th:text="${author}"></p>
+                    <p>Genre: </p><p th:text="${genre}"></p>
+                    <p>Play time:</p><p th:text="${playtime}"></p>
+                    <p>Rating: </p><p th:text="${rate}"></p>
+                    <p>Price: </p><p th:text="${price}"></p>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <span th:text="${movie.Description}"></span>
+                <span th:text="${descr}"></span>
             </td>
 
         </tr>
