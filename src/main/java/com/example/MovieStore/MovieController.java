@@ -107,6 +107,7 @@ public class MovieController {
     @GetMapping("/logout")
     String logout(HttpSession session) {
         session.removeAttribute("member");
+        session.removeAttribute("newMember");
         return "signIn";
     }
 
@@ -131,8 +132,8 @@ public class MovieController {
     @PostMapping("/newMember")
     String newMember(@RequestParam String name, String email, String password, Model model, HttpSession session) {
       repositoryMember.addNewMember(name, email, password);
-       // Member newMember = repositoryMember.MemberEmailMatch(email, password);
-      //  session.setAttribute("newMember", newMember);
+        Member newMember = repositoryMember.MemberEmailMatch(email, password);
+        session.setAttribute("newMember", newMember);
         return "signIn";
 
     }

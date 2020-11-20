@@ -59,7 +59,7 @@ public class MemberRepository {
         return new Member(rs.getInt("memberID"),
                 rs.getString("fullname"),
                 rs.getString("email"),
-                rs.getString("password"));
+                rs.getString("Password"));
     }
 
     @Modifying
@@ -76,11 +76,6 @@ public class MemberRepository {
             e.printStackTrace();
         }
     }
-
-       /* int memberID=createID();
-            Member member1 = new Member(memberID, name,  email, password);
-            members.add(member1);
-    }*/
 
 
 
@@ -115,7 +110,7 @@ public class MemberRepository {
     public Member MemberEmailMatch(String email, String password){
         Member member = null;
         try(Connection conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT M.MEMBERID, M.FULLNAME, M.EMAIL FROM MEMBER WHERE M.EMAIL=? AND M.PASSWORD=?")){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM MEMBER AS M WHERE M.EMAIL=? AND M.Password=?")){
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
@@ -126,13 +121,6 @@ public class MemberRepository {
             e.printStackTrace();
         }
         return member;
-        /*
-        for(Member member : members){
-            if(member.getEmail().equals(email) && member.getPassword().equals(password)){
-                return member;
-            }
-        }return null;
-*/
     }
 
 }
