@@ -1,3 +1,4 @@
+/*
 package com.example.MovieStore;
 
 import org.springframework.context.annotation.Bean;
@@ -18,8 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/imovie", "/memberlogin", "/members","/images*",  "/h2", "/h2/**").permitAll()
-                .antMatchers().hasRole("ADMIN")
+                .antMatchers("/", "/imovie", "/signIn", "/signUp",  "/h2", "/h2/**").permitAll()
+                .antMatchers("/members").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -33,9 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build());
+        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("pwd").roles("USER").build());
         manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("123").roles("USER","ADMIN").build());
         return manager;
     }
 
+
 }
+*/
