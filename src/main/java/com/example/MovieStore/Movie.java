@@ -85,6 +85,18 @@ public class Movie {
         return genres;
     }
 
+    public String getRate() {
+        return rate;
+    }
+
+    public String getDescr() {
+        return descr;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
     public void setGenres(String genres) {
         this.genres = genres;
     }

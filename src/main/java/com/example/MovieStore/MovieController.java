@@ -84,6 +84,23 @@ public class MovieController {
         return "members";
     }
 
+    @GetMapping("/moviedetail")
+    public String movieDetail(Model model, @RequestParam(value = "movieid", required = false, defaultValue = "1") Integer movieid) throws IOException {
+        Movie movie = repository.getMovie(movieid);
+        model.addAttribute("imgId", movie.gettId());
+        model.addAttribute("title", movie.getTitle());
+        model.addAttribute("author", movie.getAuthor());
+        model.addAttribute("year", movie.getDate());
+        model.addAttribute("genre", movie.getGenres());
+        model.addAttribute("playtime", movie.getMovieLength());
+        model.addAttribute("descr", movie.getDescr());
+        model.addAttribute("price", movie.getPrice());
+        model.addAttribute("rate", movie.getRate());
+        model.addAttribute("actors", movie.getActors());
+
+        return "moviedetail";
+    }
+
     @GetMapping("/memberlogin")
     public String loginPage(Model model, HttpSession session) {
         if (session.getAttribute("newMember") != null) {

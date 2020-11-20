@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Movie Planet</title>
 </head>
-
-<<<<<<< HEAD
 <body>
-
 <nav class="navbar navbar-expand-ld navbar-dark fixed-top bg-danger">
     <a class="navbar-brand" href="#">
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
@@ -23,25 +20,11 @@
         <button class="btn bg-light my-2 my-sm-0" type="submit">Search</button>
     </form>
     <span class="navdiv">
-=======
-      <body>
-           <nav class="navbar navbar-expand-ld navbar-dark fixed-top bg-danger">
-                  <a class="navbar-brand" href="#">
-                        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-                        Movie Planet
-                   </a>              
-                  <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search for movies..." aria-label="Search">
-                        <button class="btn bg-light my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-            <span class="navdiv">
                 <nav class="nav nav-scroller">
->>>>>>> 74423d3704626497272b9b28118572a97d7febdf
                   <a class="nav-link" href="/memberlogin">
                         <svg width="2.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                         </svg>
-
                       <span th:if="${session.member==null}">Sign in </span>
                         </a>
                       <span th:if="${session.member!=null}">
@@ -55,7 +38,7 @@
             </div>
                       </span>
                 </nav>
-                </a>
+        </a>
             </span>
     <span class="navdiv">
                   <a class="nav-link" href="#">
@@ -81,13 +64,10 @@
         <a class="nav-link text-white" href="/imovie">Movies</a>
         <a class="nav-link text-white" href="/imovie">Series</a>
         <a class="nav-link text-white" href="#">Contact</a>
-
     </nav>
 </div>
 <!-- Main -->
-
 <main role="main" class="container">
-
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -117,11 +97,9 @@
             </a>
         </div>
 
-
         <div class="media text-muted pt-3">
             <h4>The best options for buying digital movies</h4><br>
             <span>As great as Netflix is, its catalogue of titles shifts around all the time - pretty much the only movies you can guarantee to be on Netflix forever are those it's made itself. So if you want a digital movie, with no disc, that you can keep forever, then where should you turn?
-
 In fact there are more digital movie stores out there than you might think if you're struggling for something to watch of a Saturday night. Here we'll outline the best choices, plus a few of their pros and cons, so you can organise your purchases accordingly.</span>
         </div>
         <small class="d-block text-right mt-3">
@@ -129,15 +107,12 @@ In fact there are more digital movie stores out there than you might think if yo
         </small>
     </div>
 </main>
-
 <!-- Footer -->
-
 <footer class="footer mt-auto py-2 bg-secondary">
     <div class="container">
         <span class="text-muted"><a class="nav-link active text-white" href="#">some links maybe</a></span>
     </div>
 </footer>
-
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
