@@ -152,7 +152,8 @@ public class MovieController {
     }
 
     @GetMapping("/orderConfirmation")
-    public String orderConfirmation() {
+    public String orderConfirmation(Model model, String price) {
+        model.addAttribute("price", price);
         return "orderConfirmation";
     }
 
