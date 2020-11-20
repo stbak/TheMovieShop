@@ -79,11 +79,11 @@ public class MemberRepository {
 
 
 
-    public Member MemberLoginMatch(int memberID, String password){
+    public Member MemberLoginMatch(String email, String password){
        Member member = null;
         try(Connection conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM MEMBER AS M WHERE M.MemberId=? AND M.Password=?")){
-            ps.setInt(1, memberID);
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM MEMBER AS M WHERE M.Email=? AND M.Password=?")){
+            ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){

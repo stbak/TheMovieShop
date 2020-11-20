@@ -19,17 +19,17 @@ MemberRepository repository;
 
 	@Test
 	public void checkLogInMatchFails() {
-		Assert.assertEquals(null, repository.MemberLoginMatch(234,"KajsaAnka!"));
-		Assert.assertEquals(null, repository.MemberLoginMatch(234,"PWKajsaAnk"));
-		Assert.assertEquals(null, repository.MemberLoginMatch(237,"PWKajsaAnka!"));
+		Assert.assertEquals(null, repository.MemberLoginMatch("Kalle@anka.com","KajsaAnka!"));
+		Assert.assertEquals(null, repository.MemberLoginMatch("Kalle@anka.com","PWKajsaAnk"));
+		Assert.assertEquals(null, repository.MemberLoginMatch("Kalle@anka.com","PWKajsaAnka!"));
 
 	}
 
 	@Test
 	public void checkLogInMatchSuccess() {
 		List<Member> memberList = new ArrayList<>(repository.memberList());
-		Assert.assertEquals(memberList.get(0), repository.MemberLoginMatch(234,"PWKajsaAnka!"));
-		Assert.assertEquals(memberList.get(2), repository.MemberLoginMatch(236,"Båtsman"));
+		Assert.assertEquals(memberList.get(0), repository.MemberLoginMatch("Kalle@anka.com","PWKajsaAnka!"));
+		Assert.assertEquals(memberList.get(2), repository.MemberLoginMatch("tjorven@gmail.com","Båtsman"));
 
 	}
 }
