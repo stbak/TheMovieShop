@@ -28,10 +28,7 @@
                         </svg>
 
                       <span th:if="${session.member==null}">Sign in </span>
-
-
                         </a>
-
                       <span th:if="${session.member!=null}">
                       <li class="nav-item dropdown">
                   <a class="nav-link text-grey" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.member.fullName}">
