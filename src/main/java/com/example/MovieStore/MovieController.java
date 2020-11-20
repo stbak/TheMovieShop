@@ -19,6 +19,7 @@ public class MovieController {
 
     @Autowired
     private MovieRepository repository;
+
     @Autowired
     private MemberRepository repositoryMember;
     @Autowired
@@ -58,7 +59,7 @@ public class MovieController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") String id) {
+    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") Integer id) throws IOException {
 
         Movie movie = repository.getMovie(id);
         items.add(movie);

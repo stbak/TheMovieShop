@@ -1,43 +1,35 @@
 package com.example.MovieStore;
 
 public class Movie {
-    private Integer id;
-    private String tId; //tconst
-    private String title; //primaryTitle
-    private String author;
-    private Double price;
-    private String date; //startYear
+    private Integer id; //MovieId
+    private Integer tId; //ImgId
+    private String title; //Title
+    private String author; //Director
+    private Integer price; //Price
+    private Integer date; //MovieYear
     private String type; //movie, short, tv titleType
-    private String genres;
+    private String genres; //Genre
     private boolean adult; //isAdult
-    private String movieLength; //
+    private String rate; //Rate
+    private Integer movieLength; //PlayTime
+    private String descr; //Description
+    private String actors; //Stars
 
-    /*public Movie(Integer id, String title, String author, Double price, String date) {
-
-
+    public Movie(Integer id, Integer imgId,  String title, Integer year, String genre, String actors, String author, Integer minutes, String rate, Integer price, String descr) {
         this.id = id;
-        this.title = title;
-        this.author = author;
-        this.price = price;
-        this.date = date;
-    }
-
-     */
-
-
-
-    public Movie(String id, String title, String year, String minutes, String genre, Double price) {
-        this.tId = id;
+        this.tId = imgId;
         this.title = title;
         this.date = year;
-        this.movieLength = minutes;
         this.genres = genre;
+        this.actors = actors;
+        this.author = author;
+        this.movieLength = minutes;
         this.price = price;
+        this.descr = descr;
+        this.rate = rate;
     }
 
-
-
-    public String getId() {
+    public Integer getId() {
         return tId;
     }
 
@@ -57,27 +49,27 @@ public class Movie {
         this.author = author;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public String getDate() {
+    public Integer getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Integer date) {
         this.date = date;
     }
 
-    public String gettId() {
+    public Integer gettId() {
         return tId;
     }
 
-    public void settId(String tId) {
+    public void settId(Integer tId) {
         this.tId = tId;
     }
 
@@ -105,11 +97,11 @@ public class Movie {
         this.adult = adult;
     }
 
-    public String getMovieLength() {
+    public Integer getMovieLength() {
         return movieLength;
     }
 
-    public void setMovieLength(String movieLength) {
+    public void setMovieLength(Integer movieLength) {
         this.movieLength = movieLength;
     }
 }
