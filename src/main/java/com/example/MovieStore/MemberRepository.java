@@ -127,14 +127,17 @@ public class MemberRepository {
         return favoriteMovies;
     }
 
-
     private Movie rsMovie(ResultSet rs) throws SQLException {
-        return new Movie(rs.getString("MovieId"),
+        return new Movie(rs.getInt("MovieId"),
+                rs.getInt("ImgId"),
                 rs.getString("Title"),
-                rs.getString("MovieYear"),
-                rs.getString("PlayTime"),
+                rs.getInt("MovieYear"),
                 rs.getString("Genre"),
-                rs.getDouble("Price"));
-
+                rs.getString("Stars"),
+                rs.getString("Director"),
+                rs.getInt("PlayTime"),
+                rs.getString("Rate"),
+                rs.getInt("Price"),
+                rs.getString("Description"));
     }
 }
