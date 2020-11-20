@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -10,6 +10,7 @@
     <title>Movie Planet</title>
 </head>
 
+<<<<<<< HEAD
 <body>
 
 <nav class="navbar navbar-expand-ld navbar-dark fixed-top bg-danger">
@@ -22,13 +23,40 @@
         <button class="btn bg-light my-2 my-sm-0" type="submit">Search</button>
     </form>
     <span class="navdiv">
+=======
+      <body>
+           <nav class="navbar navbar-expand-ld navbar-dark fixed-top bg-danger">
+                  <a class="navbar-brand" href="#">
+                        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                        Movie Planet
+                   </a>              
+                  <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search for movies..." aria-label="Search">
+                        <button class="btn bg-light my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            <span class="navdiv">
+                <nav class="nav nav-scroller">
+>>>>>>> 74423d3704626497272b9b28118572a97d7febdf
                   <a class="nav-link" href="/memberlogin">
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="2.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                         </svg>
-                        Sign in
+
+                      <span th:if="${session.member==null}">Sign in </span>
+                        </a>
+                      <span th:if="${session.member!=null}">
+                      <li class="nav-item dropdown">
+                  <a class="nav-link text-grey" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.member.fullName}">
+                        </svg>
                   </a>
-                  </span>
+            <div class="dropdown-menu text-grey"  aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">User info</a>
+                <a class="dropdown-item text-grey-dark" href="/logout">Sign out</a>
+            </div>
+                      </span>
+                </nav>
+                </a>
+            </span>
     <span class="navdiv">
                   <a class="nav-link" href="#">
                         <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -85,20 +85,23 @@ public class MovieController {
     }
 
     @GetMapping("/memberlogin")
-    public String loginPage(Model model) {
+    public String loginPage(Model model, HttpSession session) {
+        if (session.getAttribute("newMember") != null) {
+            session.removeAttribute("newMember");
+        }
         return "signIn";
     }
 
     @PostMapping("/tryLogin")
-    String form(@RequestParam Integer memberID, String password, Model model, HttpSession session) {
-        Member member = repositoryMember.MemberLoginMatch(memberID, password);
+    String form(@RequestParam String email, String password, Model model, HttpSession session) {
+        Member member = repositoryMember.MemberLoginMatch(email, password);
 
         if(member!=null){
             session.setAttribute("member", member);
-            return "SuccessLoginPage";
+            return "index";
         }
         else{
-            model.addAttribute("message", "Wrong Member ID or password, please try again");
+            model.addAttribute("message", "Wrong email or password, please try again");
             return "signIn";
 
         }
@@ -108,6 +111,7 @@ public class MovieController {
     @GetMapping("/logout")
     String logout(HttpSession session) {
         session.removeAttribute("member");
+        session.removeAttribute("newMember");
         return "signIn";
     }
 
@@ -132,8 +136,12 @@ public class MovieController {
     @PostMapping("/newMember")
     String newMember(@RequestParam String name, String email, String password, Model model, HttpSession session) {
       repositoryMember.addNewMember(name, email, password);
-       // Member newMember = repositoryMember.MemberEmailMatch(email, password);
-      //  session.setAttribute("newMember", newMember);
+        Member newMember = repositoryMember.MemberEmailMatch(email, password);
+        if (session.getAttribute("newMember") != null) {
+            session.removeAttribute("newMember");
+        }
+
+        session.setAttribute("newMember", newMember);
         return "signIn";
 
     }
@@ -145,7 +153,8 @@ public class MovieController {
     }
 
     @GetMapping("/orderConfirmation")
-    public String orderConfirmation() {
+    public String orderConfirmation(Model model, String price) {
+        model.addAttribute("price", price);
         return "orderConfirmation";
     }
 
