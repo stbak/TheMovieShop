@@ -19,6 +19,7 @@ public class MovieController {
 
     @Autowired
     private MovieRepository repository;
+
     @Autowired
     private MemberRepository repositoryMember;
     @Autowired
@@ -58,7 +59,7 @@ public class MovieController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") String id) {
+    public String cart(Model shop, @RequestParam(value = "movie", required = false, defaultValue = "1") Integer id) throws IOException {
 
         Movie movie = repository.getMovie(id);
         items.add(movie);
@@ -82,6 +83,28 @@ public class MovieController {
         model.addAttribute("members", memberList);
         return "members";
     }
+
+    @GetMapping("/moviedetail")
+    public String movieDetail(Model model, @RequestParam(value = "movieid", required = false, defaultValue = "1") Integer movieid) throws IOException {
+
+        Movie movie = repository.getMovie(movieid);
+        model.addAttribute("imgId", movie.gettId());
+        model.addAttribute("title", movie.getTitle());
+        model.addAttribute("author", movie.getAuthor());
+        model.addAttribute("year", movie.getDate());
+        model.addAttribute("genre", movie.getGenres());
+        model.addAttribute("playtime", movie.getMovieLength());
+        model.addAttribute("descr", movie.getDescr());
+        model.addAttribute("price", movie.getPrice());
+        model.addAttribute("rate", movie.getRate());
+        model.addAttribute("actors", movie.getActors());
+
+        System.out.println("Movie title: " + movie.getTitle());
+
+        return "moviedetail";
+    }
+
+
 
     @GetMapping("/memberlogin")
     public String loginPage(Model model, HttpSession session) {

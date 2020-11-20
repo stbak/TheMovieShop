@@ -95,7 +95,7 @@
             <tbody>
                 <tr th:each="movie : ${movies}">
                     <td th:text="${movieStat.count}"></td>
-                    <td><a th:href="'https://www.imdb.com/title/' + ${movie.tId}" target="_blank" th:text="${movie.title}"></a></td>
+                    <td><a th:href="'/moviedetail?movieid=' + ${movie.id}" target="_blank" th:text="${movie.title}"></a></td>
                     <td th:text="${movie.date}"></td>
                     <td th:text="${movie.genres}"></td>
                     <td th:text="${movie.price}"></td>
