@@ -86,6 +86,7 @@ public class MovieController {
 
     @GetMapping("/moviedetail")
     public String movieDetail(Model model, @RequestParam(value = "movieid", required = false, defaultValue = "1") Integer movieid) throws IOException {
+
         Movie movie = repository.getMovie(movieid);
         model.addAttribute("imgId", movie.gettId());
         model.addAttribute("title", movie.getTitle());
@@ -98,8 +99,12 @@ public class MovieController {
         model.addAttribute("rate", movie.getRate());
         model.addAttribute("actors", movie.getActors());
 
+        System.out.println("Movie title: " + movie.getTitle());
+
         return "moviedetail";
     }
+
+
 
     @GetMapping("/memberlogin")
     public String loginPage(Model model, HttpSession session) {
