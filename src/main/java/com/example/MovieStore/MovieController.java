@@ -84,7 +84,10 @@ public class MovieController {
     }
 
     @GetMapping("/memberlogin")
-    public String loginPage(Model model) {
+    public String loginPage(Model model, HttpSession session) {
+        if (session.getAttribute("newMember") != null) {
+            session.removeAttribute("newMember");
+        }
         return "signIn";
     }
 
