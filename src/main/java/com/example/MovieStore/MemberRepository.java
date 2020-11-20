@@ -1,6 +1,7 @@
 package com.example.MovieStore;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -61,7 +62,7 @@ public class MemberRepository {
                 rs.getString("password"));
     }
 
-
+    @Modifying
     public void addNewMember(String fullName, String email, String password) {
 
         try (Connection conn = dataSource.getConnection();
@@ -69,7 +70,7 @@ public class MemberRepository {
             ps.setString(1, fullName);
             ps.setString(2, email);
             ps.setString(3, password);
-            ResultSet rs = ps.executeQuery();
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
