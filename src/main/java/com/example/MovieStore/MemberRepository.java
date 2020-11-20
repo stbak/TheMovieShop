@@ -96,7 +96,12 @@ public class MemberRepository {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return member;
+        if(member==null){
+            return null;
+        }else{
+            return member;
+        }
+
         /*
         for(Member member : members){
             if(member.getMemberID() == memberID && member.getPassword().equals(password)){
