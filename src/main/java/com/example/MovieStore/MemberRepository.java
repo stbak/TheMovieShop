@@ -32,13 +32,6 @@ public class MemberRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }return member;
-        /*
-        for (Member member : members) {
-            if (member.getMemberID() == memberid) {
-                return member;
-            }
-        }
-        return null;*/
     }
 
     public List<Member> memberList (){
@@ -97,13 +90,6 @@ public class MemberRepository {
         }else{
             return member;
         }
-
-        /*
-        for(Member member : members){
-            if(member.getMemberID() == memberID && member.getPassword().equals(password)){
-                return member;
-            }
-        }return null;*/
 
     }
 
