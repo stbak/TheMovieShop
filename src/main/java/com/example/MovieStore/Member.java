@@ -3,12 +3,14 @@ package com.example.MovieStore;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Member {
+
     private int memberID;
     private String fullName;
     private String email;
     private String password;
-    private List<String> favouriteList = new ArrayList<>();
+    private List<String> favoriteList = new ArrayList<>();
 
     public Member(int memberID, String password){
         this.memberID=memberID;
@@ -55,12 +57,12 @@ public class Member {
         this.password = password;
     }
 
-    public List<String> getFavouriteList() {
-        return favouriteList;
+    public List<String> getFavoriteList() {
+        return favoriteList;
     }
 
     public void setFavouriteList(List<String> favouriteList) {
-        this.favouriteList = favouriteList;
+        this.favoriteList = favouriteList;
     }
 
 

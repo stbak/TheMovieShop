@@ -114,13 +114,13 @@ public class MovieController {
         return "signIn";
     }
 
-    @GetMapping("/favourites")
+    @GetMapping("/favorites")
     public String favourites(Model model, HttpSession session) {
         if(session.getAttribute("member")!=null){
            Member member = (Member) session.getAttribute("member");
-            List<String> favouriteList = member.getFavouriteList();
-            model.addAttribute("favouriteList", favouriteList);
-            return "favourites";
+            List<Movie> favoriteList = repositoryMember.getFavoriteList(member.getMemberID());
+            model.addAttribute("favoriteList", favoriteList);
+            return "favorites";
         }else{
             return "signIn";
         }

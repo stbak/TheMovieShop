@@ -108,5 +108,33 @@ public class MemberRepository {
         }
         return member;
     }
+   public List<Movie> getFavoriteList(int memberID) {
+        List<Movie> favoriteMovies = new ArrayList<>();
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Movie AS M " +
+                    "JOIN FAVORITES AS F ON M.MOVIEID = F.MOVIEID " +
+                    "JOIN MEMBER AS C ON C.MEMBERID = F.MEMBERID" +
+                    " WHERE C.MEMBERID = ?")){
+            ps.setString(1, String.valueOf(memberID));
 
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                favoriteMovies.add(rsMovie(rs));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return favoriteMovies;
+    }
+
+
+    private Movie rsMovie(ResultSet rs) throws SQLException {
+        return new Movie(rs.getString("MovieId"),
+                rs.getString("Title"),
+                rs.getString("MovieYear"),
+                rs.getString("PlayTime"),
+                rs.getString("Genre"),
+                rs.getDouble("Price"));
+
+    }
 }

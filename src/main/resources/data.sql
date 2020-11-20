@@ -4,6 +4,9 @@ INSERT INTO MEMBER (FullName, Email, Password) VALUES ('Tjorven', 'tjorven@gmail
 INSERT INTO MEMBER (FullName, Email, Password) VALUES ('Astrid Lindgren', 'astrid@gmail.com', '!lindgren!');
 INSERT INTO MEMBER (FullName, Email, Password) VALUES ('Hercules', 'hercules@gmail.com', 'PW');
 
+
+
+
 INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES(1000, 'Antebellum',2020,	'Horror', 'Janelle Monáe, Eric Lange, Jena Malone', 'Gerard Bush',105, '5,5', 450, 'Successful author Veronica Henley finds herself trapped in a horrifying reality and must uncover the mind-bending mystery before its too late.');
 INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES(1001, 'Billie', 2019, 'Documentary','Billie Holiday','James Erskine',96,'6,6', 545,'Documentary on the famed jazz singer,Billie Holiday.');
 INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES(1002,'Upside-Down Magic',2020,'Fantasy','Izabela Rose, Siena Agudong, Kyle Howard','Joe Nussbaum',96,'4,8',555,'In "Upside-Down Magic, a Disney Channel Original Movie, 13-year-old Nory Boxwood Horace discovers she can flux into animals, and her best friend Reina Carvajal can manipulate flames.');
@@ -71,4 +74,7 @@ INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Ra
 INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES(	1065	,'Anti-Life',	2020	,'Sci-Fi',	'Cody Kearsley, Bruce Willis, Rachel Nichols',	'John Suits',	98	,'5,2',	510	,'On the cusp of fatherhood, a junior mechanic aboard an interstellar ark to New Earth must outwit a malevolent cosmic terror intent on using the spaceship as a weapon.'	);
 INSERT INTO Movie (ImgId, Title, MovieYear, Genre, Stars, Director, PlayTime, Rate, Price, Description) VALUES(	1066	,'Habitual',	2020	,'Horror',	'Emilee Fitzpatrick, Jaylee Hickey, Johnny Hickey',	'Johnny Hickey',	95	,'4,4',	508	,'A fistful of drug popping ravers and an insane mental patient take a hell bent trip to an underground rave party "The Habit", being held at an abandon lunatic asylum in Salem Massachusetts'	);
 
-
+INSERT INTO FAVORITES (MemberId, MovieId) VALUES (1, 3);
+INSERT INTO FAVORITES (MemberId, MovieId) VALUES (1, 4);
+INSERT INTO FAVORITES (MemberId, MovieId) VALUES (2, 3);
+INSERT INTO FAVORITES (MemberId, MovieId) VALUES (2, 6);
