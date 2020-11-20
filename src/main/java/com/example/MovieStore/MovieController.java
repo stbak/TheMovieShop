@@ -3,9 +3,7 @@ package com.example.MovieStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -34,9 +32,9 @@ public class MovieController {
     }
 
 
+
     @GetMapping("/imovie")
     public String movies(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) throws IOException {
-
 
         List<Movie> movies = repository.getPage(page - 1, ITEMS_PER_PAGE);
         int pageCount = repository.numberOfPages(ITEMS_PER_PAGE);
@@ -80,11 +78,11 @@ public class MovieController {
 
     @GetMapping("/members")
     public String member(Model model) {
-
         List<Member> memberList = repositoryMember.memberList();
         model.addAttribute("members", memberList);
         return "members";
     }
+
     @GetMapping("/memberlogin")
     public String loginPage(Model model) {
         return "signIn";
@@ -92,7 +90,7 @@ public class MovieController {
 
     @PostMapping("/tryLogin")
     String form(@RequestParam Integer memberID, String password, Model model, HttpSession session) {
-        Member member = MemberRepository.MemberLoginMatch(memberID, password);
+        Member member = repositoryMember.MemberLoginMatch(memberID, password);
 
         if(member!=null){
             session.setAttribute("member", member);
@@ -112,7 +110,6 @@ public class MovieController {
         return "signIn";
     }
 
-
     @GetMapping("/favourites")
     public String favourites(Model model, HttpSession session) {
         if(session.getAttribute("member")!=null){
@@ -130,11 +127,13 @@ public class MovieController {
 
         return "signUp";
     }
+
     @PostMapping("/newMember")
     String newMember(@RequestParam String name, String email, String password, Model model, HttpSession session) {
-      repositoryMember.addNewMember(600,name, email, password);
-
-        return "SignIn";
+      repositoryMember.addNewMember(name, email, password);
+        Member newMember = repositoryMember.MemberEmailMatch(email, password);
+        session.setAttribute("newMember", newMember);
+        return "signIn";
 
     }
 

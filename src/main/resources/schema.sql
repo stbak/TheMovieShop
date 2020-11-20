@@ -1,0 +1,43 @@
+CREATE TABLE Member(
+  MemberId INT AUTO_INCREMENT PRIMARY KEY,
+  FullName VARCHAR(50) NOT NULL,
+  StreetAddress VARCHAR(50),
+  PostalCode VARCHAR(50),
+  City VARCHAR(50),
+  Email VARCHAR(255) NOT NULL,
+  Phone VARCHAR(50),
+  Password VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Movie(
+  MovieId INT AUTO_INCREMENT PRIMARY KEY,
+  ImgId INT,
+  Title VARCHAR(255),
+  MovieYear INT,
+  Genre VARCHAR(50),
+  Stars VARCHAR(255),
+  Director VARCHAR(50),
+  PlayTime INT,
+  Rate VARCHAR(10),
+  Price INT,
+  Description VARCHAR(255)
+);
+
+CREATE TABLE Orders(
+  OrderId INT AUTO_INCREMENT PRIMARY KEY,
+ MemberId INT NOT NULL,
+ MovieId INT NOT NULL,
+ OrderDate DATE
+);
+
+CREATE TABLE Favorites(
+  FavoritesId INT AUTO_INCREMENT PRIMARY KEY,
+  MemberId INT NOT NULL,
+  MovieId INT NOT NULL
+);
+
+ALTER TABLE Favorites ADD FOREIGN KEY (MemberId) REFERENCES Member(MemberId);
+ALTER TABLE Favorites ADD FOREIGN KEY (MovieId) REFERENCES Movie(MovieId);
+ALTER TABLE Orders ADD FOREIGN KEY (MemberId) REFERENCES Member(MemberId);
+ALTER TABLE Orders ADD FOREIGN KEY (MovieId) REFERENCES Movie(MovieId);
+CREATE INDEX IDX_RES_DATE_ ON ORDERS(OrderDate);
