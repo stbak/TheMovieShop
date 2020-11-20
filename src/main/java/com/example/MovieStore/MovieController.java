@@ -94,7 +94,7 @@ public class MovieController {
 
         if(member!=null){
             session.setAttribute("member", member);
-            return "SuccessLoginPage";
+            return "index";
         }
         else{
             model.addAttribute("message", "Wrong Member ID or password, please try again");
