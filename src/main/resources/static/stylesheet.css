@@ -1,10 +1,10 @@
+
 * {
   box-sizing: border-box;
 }
 
 html,
 body {
-
   font-family: 'Montserrat', sans-serif;
   display: flex;
   width: 100%;
@@ -17,8 +17,8 @@ body {
 .checkout-panel {
   display: flex;
   flex-direction: column;
-  width: 940px;
-  height: 90%;
+  width: 100%;
+  height: 80%;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
 }
@@ -26,7 +26,6 @@ body {
 .panel-body {
   padding: 45px 80px 0;
   flex: 1;
-  float: center;
 }
 
 .title {
@@ -336,4 +335,6 @@ width: 100%
 width: 75%;
 align: left;
 }
+
+
 
