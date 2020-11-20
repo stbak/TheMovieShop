@@ -104,6 +104,10 @@ public class MovieController {
         return "moviedetail";
     }
 
+    @PostMapping("/search")
+    public String searchMovieBy() {
+        return "search";
+    }
 
 
     @GetMapping("/memberlogin")

@@ -42,7 +42,6 @@ public class MovieRepository {
         return movies;
     }
 
-
     private Movie rsMovie(ResultSet rs) throws SQLException {
         return new Movie(rs.getInt("MovieId"),
                 rs.getInt("ImgId"),
@@ -75,6 +74,7 @@ public class MovieRepository {
         }
         return null;
     }
+
     public static boolean isNumeric(String str) {
         if (str == null) {
             return false;
@@ -86,6 +86,7 @@ public class MovieRepository {
         }
         return true;
     }
+
     public void fillDatabase(String string) {
         //System.out.println("Filling database " + string);
     }
