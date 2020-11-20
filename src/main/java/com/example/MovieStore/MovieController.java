@@ -107,6 +107,7 @@ public class MovieController {
     @GetMapping("/logout")
     String logout(HttpSession session) {
         session.removeAttribute("member");
+        session.removeAttribute("newMember");
         return "signIn";
     }
 

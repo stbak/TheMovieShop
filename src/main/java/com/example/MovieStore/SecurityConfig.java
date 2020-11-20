@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/imovie", "/memberLogin", "/signup", "/moviePosters/*", "/h2", "/h2/**").permitAll()
+                .antMatchers("/", "/imovie", "/signIn", "/signUp",  "/h2", "/h2/**").permitAll()
                 .antMatchers("/members").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -38,8 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("123").roles("USER","ADMIN").build());
         return manager;
     }
-
-
 
 
 }
